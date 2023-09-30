@@ -32,7 +32,7 @@ public:
             else
             {
                 cnt += (end - st);
-                cout << st << " " << end << '\n';
+                // cout << st << " " << end << '\n';v
                 st++;
             }
         }
