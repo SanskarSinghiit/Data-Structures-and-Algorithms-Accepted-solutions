@@ -6,7 +6,8 @@ public:
         int x = n/k;
         for(int i = 0; i < k; i++)
         {
-            vec.push_back(x);
+            // vec.push_back(x);
+            vec[i] = x;
         }
         int y = n % k;
         // cout << " y: " << y << '\n';
@@ -21,7 +22,7 @@ public:
         {
             product *= vec[i];
         }
-        vec.clear();
+        // vec.clear();
         return product;
     }
 
@@ -29,7 +30,7 @@ public:
     {
         // n = 10;
         // int k = 4;
-        vector<int> vec;
+        vector<int> vec(n, 1);
         // cout << func(n, k, vec);
         int maxi = INT_MIN;
         for(int i = 2; i <= n; i++)
