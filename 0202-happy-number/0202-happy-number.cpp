@@ -35,7 +35,7 @@ public:
         {
             n = makeIt(n);
             stop++;
-            if(stop>10000){return false;}
+            if(stop>100){return false;}
         }
         return true;
     }
