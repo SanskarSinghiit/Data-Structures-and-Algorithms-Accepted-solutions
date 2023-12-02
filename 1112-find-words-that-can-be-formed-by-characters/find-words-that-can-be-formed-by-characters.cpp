@@ -11,10 +11,11 @@ public:
 
         int n = words.size();
         int cnt = 0;
+        vector<int> dummy;
         for(int i = 0; i < n; i++)
         {
             // if not present then continue;
-            vector<int> dummy = hmp;
+            dummy = hmp;
             bool cont = false;
             for(int j = 0; j < words[i].size(); j++)
             {
@@ -25,6 +26,7 @@ public:
             if(cont){continue;}
             // if present and then cnt++
             cnt += words[i].size();
+            dummy.clear();
         }
         return cnt;
     }
