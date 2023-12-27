@@ -37,26 +37,27 @@ public:
     // //  it;
     //     int mapIndex;
     //     int mapColor;
-    //     for(int i = 0; i < n; i++)
-    //     {
-    //         auto it = next(mp.begin(), j);
-    //         mapIndex = (*it).first;
-    //         mapColor = (*it).second;
-    //         if(i==mapIndex)
-    //         {
-    //             j++;
-    //             continue;
-    //         }
-    //         else
-    //         {
-    //             cnt+=neededTime[i];
-    //         }
-    //     }
-        // return 0;
+    auto it = mp.begin();
         for(int i = 0; i < n; i++)
         {
-            if(mp.find(i)==mp.end()){cnt+=neededTime[i];}
+            // auto it = next(mp.begin(), j);
+            // mapIndex = (*it).first;
+            // mapColor = (*it).second;
+            if(i==(*it).first)
+            {
+                it++;
+                continue;
+            }
+            else
+            {
+                cnt+=neededTime[i];
+            }
         }
+        // return 0;
+        // for(int i = 0; i < n; i++)
+        // {
+        //     if(mp.find(i)==mp.end()){cnt+=neededTime[i];}
+        // }
         return cnt;
 
     }
