@@ -8,8 +8,7 @@ public:
         map<int, char> mp;
         for(int i = 1; i < n; i++)
         {
-            if(colors[i]==colors[i-1])
-            {
+            if(colors[i]==colors[i-1]){
                 int x = neededTime[i];
                 if(x>maxTime){maxIndex=i; maxTime=x;}
                 if(i==n-1)
@@ -17,8 +16,7 @@ public:
                     mp.insert({maxIndex, colors[i]});
                 }
             }
-            else
-            {
+            else{
                 mp.insert({maxIndex, colors[i-1]});
                 maxTime = neededTime[i];
                 maxIndex = i;
@@ -27,25 +25,14 @@ public:
                 }
             }
         }
-        // printing the map ;
-        // for(auto val : mp)
-        // {
-        //     cout << val.first << " " << val.second << '\n';
-        // }
         int cnt = 0;
-    //     int j = 0;
-    // //  it;
-    //     int mapIndex;
-    //     int mapColor;
-    auto it = mp.begin();
-        for(int i = 0; i < n; i++)
-        {
-            // auto it = next(mp.begin(), j);
-            // mapIndex = (*it).first;
-            // mapColor = (*it).second;
+        auto it = mp.begin();
+        // int j = 0;
+        for(int i = 0; i < n; i++){
             if(i==(*it).first)
             {
-                it++;
+                // j++;
+                it = next(it, 1);
                 continue;
             }
             else
@@ -53,12 +40,6 @@ public:
                 cnt+=neededTime[i];
             }
         }
-        // return 0;
-        // for(int i = 0; i < n; i++)
-        // {
-        //     if(mp.find(i)==mp.end()){cnt+=neededTime[i];}
-        // }
         return cnt;
-
     }
 };
