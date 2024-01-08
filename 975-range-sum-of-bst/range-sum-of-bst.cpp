@@ -24,15 +24,17 @@ public:
         int value = node->val;
         if(checker(value, low, high)){
             count += value;
+            traverse(node->left, low, high, count);
+            traverse(node->right, low, high, count);           
         }
-        auto left = node->left;
-        // if(left!=nullptr){
-            traverse(left, low, high, count);
-        // }
-        auto right = node->right;
-        // if(right!=nullptr){
-            traverse(right, low, high, count);
-        // }
+        else{
+            if(value<low){
+                traverse(node->right, low, high, count);
+            }
+            else{
+                traverse(node->left, low, high, count);
+            }
+        }
     }
 
     int rangeSumBST(TreeNode* root, int low, int high)
