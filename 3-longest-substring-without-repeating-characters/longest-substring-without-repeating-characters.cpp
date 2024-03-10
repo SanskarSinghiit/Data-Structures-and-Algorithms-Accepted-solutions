@@ -25,6 +25,7 @@ public:
                 }
                 // c = str[j];
             }
+            if(j==n){break;}
             if(st.find(str[j])!=st.end()) {
                 st.erase(st.find(str[i]));
             }
