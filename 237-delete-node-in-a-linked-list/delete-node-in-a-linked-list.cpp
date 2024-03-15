@@ -14,5 +14,6 @@ public:
         ListNode* four = three->next;
         node->next=four;
         three->next=nullptr;
+        // https://drive.google.com/file/d/1YGZT-KXKQC5fNB3lYr0vNEpl3BN6PYY0/view?usp=sharing
     }
 };
