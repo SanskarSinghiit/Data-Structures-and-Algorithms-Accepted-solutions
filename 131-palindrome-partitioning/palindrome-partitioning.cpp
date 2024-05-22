@@ -20,7 +20,7 @@ public:
         return str==str1;
     }
 
-    void rec(string& s, vector<string> op, int i, vector<vector<string>>& allPartitions, int& count){
+    void rec(string& s, vector<string> op, int i, set<vector<string>>& allPartitions, int& count){
         // cout << " i -> " << i << "  ";
         //             for(auto val : op){
         //         cout << val << ' ';
@@ -34,8 +34,11 @@ public:
             return;
         }
         if(i==s.size()){
-            // allPartitions.insert(op);
-            allPartitions.push_back(op);
+            if(isPalindrome(op.back()) == false){
+                return;
+            }
+            allPartitions.insert(op);
+            // allPartitions.push_back(op);
             // cout << " i->" << i << ' ' << count++ << " => ";
             // for(auto val : op){
             //     cout << val << ' ';
@@ -46,6 +49,9 @@ public:
         op.back().push_back(s[i]);
         rec(s, op, i+1, allPartitions, count);
         op.back().pop_back();
+        if(op.back()!="" && isPalindrome(op.back()) == false){
+            return;
+        }
         string temp = "";
         temp.push_back(s[i]);
         // op.push_back(string() + s[i]);
@@ -54,16 +60,20 @@ public:
     }
 
     vector<vector<string>> partition(string s) {
-        // set<vector<string>> allPartitions;
-        vector<vector<string>> allPartitions;
+        set<vector<string>> allPartitions;
+        // vector<vector<string>> allPartitions;
         vector<vector<string>> ans;
         vector<string> op;
         int count = 0;
+        // rec(s, op, 0, allPartitions, count);
         rec(s, op, 0, allPartitions, count);
+        // for(auto val : allPartitions){
+        //     if(check(val)){
+        //         ans.push_back(val);
+        //     }
+        // }
         for(auto val : allPartitions){
-            if(check(val)){
-                ans.push_back(val);
-            }
+            ans.push_back(val);
         }
         return ans;
     }
