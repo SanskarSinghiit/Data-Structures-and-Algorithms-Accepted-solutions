@@ -13,11 +13,11 @@ public:
         int i = 0;
         int j = 1;
         for(int k = 2; k < n; k++){
-            if(check(arr, i, j, k)){
+            if(check(arr, i++, j++, k)){
                 return true;
             }
-            i++;
-            j++;
+            // i++;
+            // j++;
         }
         return false;
     }
