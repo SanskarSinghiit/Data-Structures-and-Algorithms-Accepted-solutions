@@ -12,16 +12,10 @@
 class Solution {
 public:
 
-    int traverse(TreeNode* node){
+    int maxDepth(TreeNode* node) {
         if(node==nullptr){
             return 0;
         }
-        int L = traverse(node->left);
-        int R = traverse(node->right);
-        return 1+max(L, R);
-    }
-
-    int maxDepth(TreeNode* root) {
-        return traverse(root);
+        return max(maxDepth(node->left), maxDepth(node->right)) + 1;
     }
 };
