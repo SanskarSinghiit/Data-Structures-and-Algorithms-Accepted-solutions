@@ -1,9 +1,9 @@
 class Solution {
 public:
 
-    vector<vector<int>> twoSum(int target, int start, int n, vector<int>& nums){
-        vector<vector<int>> ans;
-        vector<int> temp;
+    void twoSum(int target, int start, int n, vector<int>& nums, vector<vector<int>>& ans){
+        // vector<vector<int>> ans;
+        // vector<int> temp;
         int i = start;
         int j = n-1;
         while(i<j){
@@ -19,16 +19,16 @@ public:
                 while(j>1 && nums[j] == nums[j-1] ){
                     j--;
                 }
-                temp.push_back(-1*target);
-                temp.push_back(nums[i]);
-                temp.push_back(nums[j]);
+                // temp.push_back(-1*target);
+                // temp.push_back(nums[i]);
+                // temp.push_back(nums[j]);
+                ans.push_back({-1*target, nums[i], nums[j]});
                 i++;
                 j--; 
-                ans.push_back(temp);
-                temp.clear();
+                // temp.clear();
             }
         }
-        return ans;
+        return;
     }
 
     vector<vector<int>> threeSum(vector<int>& nums) {
@@ -41,7 +41,8 @@ public:
                 continue;
             }
             int x = nums[i];
-            vector<vector<int>> temp = twoSum(-1*x, i+1, n, nums);
+            vector<vector<int>> temp;
+            twoSum(-1*x, i+1, n, nums, temp);
             if(temp.empty()){
                 continue;
             }
@@ -50,6 +51,7 @@ public:
             for(auto val : temp){
                 ans.push_back(val);
             }
+            temp.clear();
             // st.insert(temp);
         }
         // set<vector<int>> us;
