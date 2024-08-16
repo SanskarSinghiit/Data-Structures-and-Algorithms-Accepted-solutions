@@ -12,10 +12,10 @@ public:
             i++;
         }
         sort(mm.begin(), mm.end());
-        cout << "this is mm -> " << '\n';
-        for(auto val : mm){
-            cout << val.first << ' ' << val.second << '\n';
-        }
+        // cout << "this is mm -> " << '\n';
+        // for(auto val : mm){
+        //     cout << val.first << ' ' << val.second << '\n';
+        // }
         int lo = 0;
         int hi = mm.size()-1;
         while(lo <= hi){
