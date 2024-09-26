@@ -1,34 +1,23 @@
+#define v vector
+
 class Solution {
 public:
 
-    int find(string& a, string& b, int i, int j, vector<vector<int>>& dp){
-        if(i < 0 || j < 0){
-            return 0;
+    int f(int i, int j, v<v<int>>& dp, string& s1, string& s2, int n, int m){
+        if(i==n || j == m){
+            return dp[i][j]=0;
         }
-        if(dp[i][j] != -1){
-            return dp[i][j];
+        if(dp[i][j]!=-1){return dp[i][j];}
+        if(s1[i]==s2[j]){
+            return dp[i][j]=1+f(i+1,j+1,dp,s1,s2,n,m);
         }
-        if(a[i] == b[j]){
-            return dp[i][j] = 1+find(a, b, i-1, j-1, dp);
-        }
-        int p = find(a, b, i-1, j, dp);
-        int q = find(a, b, i, j-1, dp);
-        return dp[i][j] = max(p, q);
+        return dp[i][j]=max(f(i+1,j,dp,s1,s2,n,m),f(i,j+1,dp,s1,s2,n,m));
     }
 
     int longestCommonSubsequence(string text1, string text2) {
-        string a = text1;
-        string b = text2;
-        int n = a.size();
-        int m = b.size();
-        int i = a.size() - 1;
-        int j = b.size() - 1;
-        vector<vector<int>> dp(n, vector<int>(m, -1));
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
-                dp[i][j] = -1;
-            }
-        }
-        return find(a, b, i, j, dp);
+        int n = text1.size();
+        int m = text2.size();
+        vector<vector<int>> dp(n+1, vector<int>(m+1, -1));
+        return f(0,0,dp,text1,text2,n,m);
     }
 };
