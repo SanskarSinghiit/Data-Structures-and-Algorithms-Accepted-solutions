@@ -19,7 +19,7 @@ public:
     }
 
     int coinChange(vector<int>& coins, int amount) {
-        int dp[10000000];
+        int dp[100000];
         memset(dp, -1, sizeof(dp));
         int n = coins.size();
         // for(auto val : coins){dp[val]=1;}
