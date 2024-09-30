@@ -1,33 +1,43 @@
-class CustomStack {
+#include<bits/stdc++.h>
 
+class CustomStack {
 public:
 
-    vector<int> vec;
-    int mx, sz=0;
-    // int i = 0;
+    vector<pair<int,int>> vec;
+    int mx;
+    int count = 0;
 
     CustomStack(int maxSize) {
         mx=maxSize;
     }
     
     void push(int x) {
-        if(sz==mx){return;}
-        sz++;
-        vec.push_back(x);
+        if(vec.size()==mx){return;}
+        vec.push_back({x, 0});
     }
     
     int pop() {
-        if(sz==0){return -1;}
-        sz--;
-        int x = vec.back();
-        vec.pop_back();
-        return x;
+        if(vec.size()==0){return -1;}
+        int x = vec.back().first;
+        int y = vec.back().second;
+        if(y==0 || vec.size()==1){
+            int r = vec.back().first+vec.back().second;
+            vec.pop_back();
+            return r;
+        } else{
+            count = y;
+            int z = vec.back().first;
+            vec.pop_back();
+            vec.back().second += count;
+            return z+y;
+        }
+        return -2;
     }
     
     void increment(int k, int val) {
-        for(int i = 0; i < min(k, sz); i++){
-            vec[i]+=val;
-        }
+        if(vec.size()==0){return;}
+        int minimum = vec.size() < k ? vec.size()-1 : k-1;
+        vec[minimum].second += val;
     }
 };
 
