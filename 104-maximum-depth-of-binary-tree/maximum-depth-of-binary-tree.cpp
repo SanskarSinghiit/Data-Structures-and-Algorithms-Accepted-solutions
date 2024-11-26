@@ -12,10 +12,20 @@
 class Solution {
 public:
 
-    int maxDepth(TreeNode* node) {
-        if(node==nullptr){
-            return 0;
+    void rec(TreeNode* node, int& maxd, int score){
+        if(node==nullptr){return;}
+        if(node->left==nullptr && node->right==nullptr){ // means it is a leaf node
+            maxd=max(maxd,score);
         }
-        return max(maxDepth(node->left), maxDepth(node->right)) + 1;
+        rec(node->left,maxd,score+1);
+        rec(node->right,maxd,score+1);
+    }
+
+    int maxDepth(TreeNode* root) {
+        // vector<>
+        if(root==nullptr){return 0;}
+        int maxd = -1;
+        rec(root,maxd,1);
+        return maxd;
     }
 };
