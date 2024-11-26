@@ -12,28 +12,19 @@
 class Solution {
 public:
 
-    int traverse(TreeNode* node, bool& x){
-        if(node==nullptr){
-            return 0;
-        }
-        if(x==false){
-            return -1;
-        }
-        int L = traverse(node->left, x);
-        int R = traverse(node->right, x);
-        // return 1+max(L, R);
-        if(x==false){
-            return -1;
-        }
-        if(abs(L-R) > 1){
-            x=false;
-        }
-        return 1+max(L, R);
+    int rec(TreeNode* node, bool& check){
+        if(check==false){return -1;}
+        if(node==nullptr){return 0;}
+        int x = rec(node->left, check);
+        int y = rec(node->right,check);
+        if(abs(x-y)>1){check=false;}
+        return max(x,y)+1;
     }
 
+
     bool isBalanced(TreeNode* root) {
-        bool x = true;
-        traverse(root, x);
-        return x;
+        bool check = true;
+        rec(root,check); // tells the height of root, but that not our interest;
+        return check;
     }
 };
