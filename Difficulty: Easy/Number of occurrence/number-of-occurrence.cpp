@@ -12,10 +12,14 @@ class Solution {
         // code here
         int n = arr.size();
         int count = 0;
-        for(int i = 0; i < n; i++){
-            if(arr[i]==target){count++;}
-        }
-        return count;
+        if(!binary_search(arr.begin(), arr.end(), target)){return 0;}
+        
+        auto lb = lower_bound(arr.begin(), arr.end(), target);
+        auto ub = upper_bound(arr.begin(), arr.end(), target);
+        
+        int first = lb - arr.begin();
+        int last = ub - arr.begin();
+        return last-first;
     }
 };
 
