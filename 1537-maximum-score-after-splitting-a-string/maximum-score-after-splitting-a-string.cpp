@@ -1,32 +1,36 @@
 class Solution {
 public:
-    int maxScore(string s)
-    {
+    int maxScore(string s) {
         int n = s.size();
-        int znot = 0;
-        int onot = 0;
-        for(int i = 0; i < n; i++) 
-        {
-            if(s[i]=='0'){znot++;}
-            else{onot++;}
+        // vector<pair<int,int>> vec(n);
+        // if(s[0].first=='0'){vec[0].first=1; vec[0].second=0;}
+        // else{vec[0].first=0; vec[0].second=1;}
+        // for(int i = 1; i < n; i++){
+        //     if(s[i]=='0'){
+        //         vec[i].first = vec[i-1].first + 1;
+        //         vec[i].second = vec[i-1].second;
+        //     } else{
+        //         vec[i].second = vec[i-1].second+1;
+        //         vec[i].first = vec[i-1].first;
+        //     }
+        // }
+        // ith index means i to n-1 all in rhs;
+        int zeros = 0;
+        int ones = 0;
+        int total_ones = 0;
+        for(int i = 0; i < n; i++){
+            if(s[i]=='1'){total_ones++;}
         }
-        string sub = "";
-        sub.push_back(s[0]);
-        int zero = 0;  // counts LHS zeros
-        int ones = onot;  // counts RHS ones
-        if(s[0]=='0'){zero++;}
-        else{ones--;}
-        // int maxi = max(zero, ones);
-        int maxi = 0;
-        int sum = zero+ones;
-        if(sum>maxi){maxi=sum;}
-        for(int i = 1; i < n - 1; i++)
-        {
-            if(s[i]=='0'){zero++;}
-            else{ones--;}
-            sum = zero+ones;
-            if(sum>maxi){maxi=sum;}
+        int max_score = -1;
+        for(int i = 0; i < n; i++){
+            int x = zeros;
+            int y = total_ones - ones;
+            if(x+y>max_score && i>0){max_score=x+y;}
+            if(s[i]=='0'){zeros++;}
+            else{ones++;}
         }
-        return maxi;
+        // int x = zeros; int y = total_ones - ones;
+        // if(x+y>max_score){max_score=x+y;}
+        return max_score;
     }
 };
